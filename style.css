@@ -1,0 +1,169 @@
+/* fundo e fonte geral */
+@font-face {
+  font-family: 'BatFont';
+  src: url('coisas/batmfa__.ttf') format('truetype');
+}
+
+body {
+  background-color: #0a0a0a;
+  color: white;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* centralizar o conteúdo */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+  padding: 40px 20px;
+}
+
+/* caixa principal */
+.container {
+  background: rgba(10, 10, 10, 0.85);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px #ab00d6, 0 0 10px #00ffff;
+  width: 100%;
+  max-width: 500px;
+  backdrop-filter: blur(15px);
+}
+
+/* faixa roxa no topo */
+header .top-bar {
+  background: linear-gradient(90deg, #ab00d6, #00ffff);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  box-shadow: 0 0 25px #ab00d6;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+  font-family: 'BatFont', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-shadow: 0 0 10px #fff, 0 0 15px #ab00d6;
+  color: white;
+}
+
+#menu-btn {
+  background: #fff;
+  color: #ab00d6;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 12px #00ffff;
+}
+
+#menu-btn:hover {
+  background: #eaeaea;
+  transform: scale(1.05);
+}
+
+h2 {
+  text-align: center;
+  color: #ab00d6;
+  text-shadow: 0 0 12px #ab00d6;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input {
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background-color: #1e1e1e;
+  color: #fff;
+  box-shadow: 0 0 5px #00ffff inset;
+  font-size: 1em;
+}
+
+input::placeholder {
+  color: #bbb;
+}
+
+button[type="submit"] {
+  padding: 14px;
+  background: linear-gradient(90deg, #ab00d6, #00ffff);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  font-size: 1em;
+  box-shadow: 0 0 20px #ab00d6;
+  text-shadow: 0 0 3px #000;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(90deg, #c300ff, #00e6e6);
+  transform: scale(1.05);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #121212;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 10px #ab00d6;
+}
+
+li span {
+  color: #00ff99;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+li button {
+  background: transparent;
+  border: none;
+  color: #ff2b2b;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.3s;
+}
+
+li button:hover {
+  transform: scale(1.3);
+  color: #ff6b6b;
+}
+
+@media (max-width: 600px) {
+  header .top-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  button[type="submit"] {
+    font-size: 16px;
+  }
+}
