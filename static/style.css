@@ -1,7 +1,7 @@
 /* fundo e fonte geral */
 @font-face {
   font-family: 'BatFont';
-  src: url('coisas/batmfa__.ttf') format('truetype');
+  src: url('/static/coisas/batmfa__.ttf') format('truetype');
 }
 
 body {
@@ -27,7 +27,7 @@ main {
   background: rgba(10, 10, 10, 0.85);
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 0 30px #ab00d6, 0 0 10px #00ffff;
+  box-shadow: 0 0 30px #9000d3, 0 0 10px #ff00bf;
   width: 100%;
   max-width: 500px;
   backdrop-filter: blur(15px);
@@ -35,12 +35,12 @@ main {
 
 /* faixa roxa no topo */
 header .top-bar {
-  background: linear-gradient(90deg, #ab00d6, #00ffff);
+  background: linear-gradient(90deg, #9000d3, #ff00bf);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  box-shadow: 0 0 25px #ab00d6;
+  box-shadow: 0 0 25px #9000d3;
 }
 
 header h1 {
@@ -50,20 +50,20 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-shadow: 0 0 10px #fff, 0 0 15px #ab00d6;
+  text-shadow: 0 0 10px #fff, 0 0 15px #9000d3;
   color: white;
 }
 
 #menu-btn {
   background: #fff;
-  color: #ab00d6;
+  color: #9000d3;
   border: none;
   padding: 10px 15px;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
-  box-shadow: 0 0 12px #00ffff;
+  box-shadow: 0 0 12px #ff00bf;
 }
 
 #menu-btn:hover {
@@ -73,8 +73,8 @@ header h1 {
 
 h2 {
   text-align: center;
-  color: #ab00d6;
-  text-shadow: 0 0 12px #ab00d6;
+  color: #ff00bf;
+  text-shadow: 0 0 12px #ff00bf;
   margin-bottom: 20px;
 }
 
@@ -90,7 +90,7 @@ input {
   border-radius: 10px;
   background-color: #1e1e1e;
   color: #fff;
-  box-shadow: 0 0 5px #00ffff inset;
+  box-shadow: 0 0 5px #ff00bf inset;
   font-size: 1em;
 }
 
@@ -100,7 +100,7 @@ input::placeholder {
 
 button[type="submit"] {
   padding: 14px;
-  background: linear-gradient(90deg, #ab00d6, #00ffff);
+  background: linear-gradient(90deg, #9000d3, #ff00bf);
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -108,12 +108,12 @@ button[type="submit"] {
   transition: 0.3s;
   font-weight: bold;
   font-size: 1em;
-  box-shadow: 0 0 20px #ab00d6;
+  box-shadow: 0 0 20px #9000d3;
   text-shadow: 0 0 3px #000;
 }
 
 button[type="submit"]:hover {
-  background: linear-gradient(90deg, #c300ff, #00e6e6);
+  background: linear-gradient(90deg, #9000d3, #ff00bf);
   transform: scale(1.05);
 }
 
@@ -130,11 +130,11 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0 10px #ab00d6;
+  box-shadow: 0 0 10px #9000d3;
 }
 
 li span {
-  color: #00ff99;
+  color: #ff00bf;
   font-weight: bold;
   font-size: 1.1em;
 }
@@ -142,7 +142,7 @@ li span {
 li button {
   background: transparent;
   border: none;
-  color: #ff2b2b;
+  color: #2bff2b;
   font-size: 20px;
   cursor: pointer;
   transition: transform 0.2s, color 0.3s;
@@ -150,7 +150,7 @@ li button {
 
 li button:hover {
   transform: scale(1.3);
-  color: #ff6b6b;
+  color: #8dff83;
 }
 
 @media (max-width: 600px) {
@@ -167,3 +167,70 @@ li button:hover {
     font-size: 16px;
   }
 }
+
+.menu-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.menu-btn {
+  background: #fff;
+  color: #9000d3;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 12px #ff00bf;
+  transition: 0.3s;
+}
+
+.menu-btn:hover {
+  background: #eee;
+  transform: scale(1.05);
+}
+
+@keyframes girarGlow {
+  0% {
+    box-shadow: 0 0 30px #9000d3, 0 0 10px #ff00bf;
+  }
+  25% {
+    box-shadow: 0 0 30px #ff00bf, 0 0 10px #9000d3;
+  }
+  50% {
+    box-shadow: 0 0 30px #00ffe1, 0 0 10px #ab00d6;
+  }
+  75% {
+    box-shadow: 0 0 30px #ab00d6, 0 0 10px #00ffe1;
+  }
+  100% {
+    box-shadow: 0 0 30px #9000d3, 0 0 10px #ff00bf;
+  }
+}
+
+.container {
+  animation: girarGlow 6s infinite linear;
+}
+
+@keyframes animarGradiente {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.top-bar {
+  background: linear-gradient(270deg, #9000d3, #ff70db, #ff00b3, #9000d3);
+  background-size: 600% 600%;
+  animation: animarGradiente 8s ease infinite;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  box-shadow: 0 0 25px #9000d3;
+}
+

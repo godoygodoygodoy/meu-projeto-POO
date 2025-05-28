@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>BatFamily’s Burguer</title>
+  <link rel="icon" type="image/x-icon" href="/static/coisas/batsimbolo.ico">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <h1>
+        BatFamily’s Burguer
+      </h1>
+      <div class="menu-buttons">
+        <a href="/sobre" class="menu-btn">☰ Home</a>
+        <a href="/cardapio" class="menu-btn">🍔 Cardápio</a>
+        <a href="/" class="menu-btn">📅 Pedidos</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2>Cadastrar Lanche</h2>
+      <form id="form-lanche">
+        <input type="text" id="nome" placeholder="Nome do Lanche" required>
+        <input type="number" id="preco" placeholder="Preço" required>
+        <button type="submit">Cadastrar</button>
+      </form>
+
+      <h2>Lanches Cadastrados</h2>
+      <ul id="lista-lanches"></ul>
+    </div>
+  </main>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
