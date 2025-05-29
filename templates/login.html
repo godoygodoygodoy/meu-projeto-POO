@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>BatFamily’s Burguer - Login</title>
+  <link rel="icon" href="/static/coisas/batsimbolo.ico">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <h1>
+        BatFamily’s Burguer
+      </h1>
+      <div class="menu-buttons">
+        <a href="/" class="menu-btn">☰ Home</a>
+        <a href="/cardapio" class="menu-btn">🍔 Cardápio</a>
+        <a href="/" class="menu-btn">🔐 Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2>Bem-vindo à BatFamily’s Burguer</h2>
+      <p>O ponto de encontro dos heróis famintos de Gotham!</p>
+      <p><strong>📍 Endereço:</strong> Beco do Crime, nº 89 - Gotham City</p>
+      <p><strong>🕓 Funcionamento:</strong> Todos os dias, das 18h às 03h</p>
+      <p><strong>📞 Contato:</strong> (19) 99851-3212 | batfam@burguer.com</p>
+
+      <hr>
+
+      <h3>Entrar na conta</h3>
+      <form method="POST" action="/logar" class="login-form">
+        <input type="text" name="username" placeholder="Nome de usuário" required>
+        <input type="password" name="senha" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+        <p>Não tem conta? <a href="/cadastro">Clique aqui para cadastrar</a></p>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

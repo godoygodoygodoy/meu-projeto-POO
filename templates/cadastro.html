@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro - BatFamily’s Burguer</title>
+  <link rel="icon" href="/static/coisas/batsimbolo.ico">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <h1>
+        BatFamily’s Burguer
+      </h1>
+      <div class="menu-buttons">
+        <a href="/" class="menu-btn">☰ Home</a>
+        <a href="/cardapio" class="menu-btn">🍔 Cardápio</a>
+        <a href="/" class="menu-btn">🔐 Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2>Criar Conta</h2>
+      <form method="POST" action="/cadastrar" class="login-form">
+        <input type="text" name="username" placeholder="Nome de usuário" required>
+        <input type="password" name="senha" placeholder="Senha" required>
+        <button type="submit">Cadastrar</button>
+        <p>Já tem uma conta? <a href="/">Clique aqui para entrar</a></p>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

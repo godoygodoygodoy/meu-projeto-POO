@@ -197,10 +197,10 @@ li button:hover {
     box-shadow: 0 0 30px #ff00bf, 0 0 10px #9000d3;
   }
   50% {
-    box-shadow: 0 0 30px #00ffe1, 0 0 10px #ab00d6;
+    box-shadow: 0 0 30px #9000d3, 0 0 10px #ff00bf;
   }
   75% {
-    box-shadow: 0 0 30px #ab00d6, 0 0 10px #00ffe1;
+    box-shadow: 0 0 30px #ff00bf, 0 0 10px #9000d3;
   }
   100% {
     box-shadow: 0 0 30px #9000d3, 0 0 10px #ff00bf;
