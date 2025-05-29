@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>BatFamily’s Burguer</title>
+  <title>Cardápio - BatFamily’s Burguer</title>
   <link rel="icon" href="/static/coisas/batsimbolo.ico">
   <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -15,20 +15,34 @@
       <div class="menu-buttons">
         <a href="/" class="menu-btn">🏠 Início</a>
         <a href="/cardapio" class="menu-btn">🍔 Cardápio</a>
-        <a href="/login" class="menu-btn">🔐 Entrar</a>
+        {% if 'usuario' in session %}
+          <a href="/logout" class="menu-btn">🚪 Sair</a>
+          <span class="perfil-info">
+            {{ session['usuario'] }}
+            <img src="{{ session['foto'] }}" alt="perfil" class="foto-perfil">
+          </span>
+        {% else %}
+          <a href="/login" class="menu-btn">🔐 Entrar</a>
+        {% endif %}
       </div>
     </div>
   </header>
 
   <main>
     <div class="container">
-      <h2>Bem-vindo à BatFamily’s Burguer</h2>
-      <p>O refúgio culinário dos heróis de Gotham. Sabores lendários, combos icônicos e lanches dignos da BatFam!</p>
-      <p><strong>📍 Endereço:</strong> Beco do Crime, nº 89 - Gotham City</p>
-      <p><strong>🕓 Funcionamento:</strong> Todos os dias, das 18h às 03h</p>
-      <p><strong>📞 Contato:</strong> (19) 99851-3212 | batfam@burguer.com</p>
-      <br>
-      <a href="/login" class="menu-btn">🔓 Faça seu pedido agora</a>
+      <h2>Nosso Cardápio</h2>
+      <ul class="menu-list">
+        {% for item in cardapio %}
+          <li>
+            <strong>{{ item.nome }}</strong> - {{ item.descricao }}<br>
+            <form method="POST" action="/adicionar_carrinho">
+              <input type="hidden" name="nome" value="{{ item.nome }}">
+              <input type="hidden" name="preco" value="{{ item.preco }}">
+              <button type="submit" class="menu-btn">Adicionar ao carrinho</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
   </main>
 </body>
