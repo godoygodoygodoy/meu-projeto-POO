@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Cardápio - BatFamily’s Burguer</title>
+  <title>Página Inicial - BatFamily’s Burguer</title>
   <link rel="icon" href="/static/coisas/batsimbolo.ico">
   <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -13,8 +13,11 @@
         BatFamily’s Burguer
       </h1>
       <div class="menu-buttons">
-        <a href="/" class="menu-btn">🏠 Início</a>
+        <a href="/" class="menu-btn">☰ Home</a>
         <a href="/cardapio" class="menu-btn">🍔 Cardápio</a>
+        <a href="/carrinho" class="menu-btn">🛒 Carrinho</a>
+        <a href="/sobre" class="menu-btn">📄 Sobre</a>
+        <a href="/templates/index.html" class="menu-btn">📅 Pedidos</a>
         {% if 'usuario' in session %}
           <a href="/logout" class="menu-btn">🚪 Sair</a>
           <span class="perfil-info">
@@ -30,7 +33,7 @@
 
   <main>
     <div class="container">
-      <h2>Nosso Cardápio</h2>
+      <h2>Lista de itens disponiveis com promoção:</h2>
       <ul class="menu-list">
         {% for item in cardapio %}
           <li>

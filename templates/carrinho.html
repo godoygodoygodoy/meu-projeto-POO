@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Cardápio - BatFamily’s Burguer</title>
+  <title>Carrinho - BatFamily’s Burguer</title>
   <link rel="icon" href="/static/coisas/batsimbolo.ico">
   <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -13,12 +13,11 @@
         BatFamily’s Burguer
       </h1>
       <div class="menu-buttons">
-        <a href="/" class="menu-btn">☰ Home</a>
+        <a href="/" class="menu-btn">🏠 Início</a>
         <a href="/cardapio" class="menu-btn">🍔 Cardápio</a>
         <a href="/sobre" class="menu-btn">📄 Sobre</a>
         <a href="/index" class="menu-btn">📅 Pedidos</a>
         {% if 'usuario' in session %}
-          <a href="/carrinho" class="menu-btn">🛒 Carrinho</a>
           <a href="/logout" class="menu-btn">🚪 Sair</a>
           <span class="perfil-info">
             {{ session['usuario'] }}
@@ -33,19 +32,22 @@
 
   <main>
     <div class="container">
-      <h2>Nosso Cardápio</h2>
-      <ul class="menu-list">
-        {% for item in cardapio %}
-          <li>
-            <strong>{{ item.nome }}</strong> - {{ item.descricao }}<br>
-            <form method="POST" action="/adicionar_carrinho">
-              <input type="hidden" name="nome" value="{{ item.nome }}">
-              <input type="hidden" name="preco" value="{{ item.preco }}">
-              <button type="submit" class="menu-btn">Adicionar ao carrinho</button>
-            </form>
-          </li>
-        {% endfor %}
-      </ul>
+      <h2>🛒 Seu Carrinho</h2>
+      {% if carrinho and carrinho|length > 0 %}
+        <ul>
+          {% for item in carrinho %}
+            <li>
+              {{ item.nome }} <span>R$ {{ '%.2f' % item.preco }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+        <p><strong>Total:</strong> R$ {{ total }}</p>
+        <form method="POST" action="/esvaziar_carrinho">
+          <button type="submit">🗑️ Esvaziar Carrinho</button>
+        </form>
+      {% else %}
+        <p>Seu carrinho está vazio.</p>
+      {% endif %}
     </div>
   </main>
 </body>

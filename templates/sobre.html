@@ -12,10 +12,20 @@
       <h1>
         BatFamily’s Burguer
       </h1>
-      <div class="menu-buttons">
-        <a href="/" class="menu-btn">☰ Home</a>
+      <a href="/" class="menu-btn">☰ Home</a>
         <a href="/cardapio" class="menu-btn">🍔 Cardápio</a>
         <a href="/sobre" class="menu-btn">📄 Sobre</a>
+        <a href="/index" class="menu-btn">📅 Pedidos</a>
+        {% if 'usuario' in session %}
+          <a href="/carrinho" class="menu-btn">🛒 Carrinho</a>
+          <a href="/logout" class="menu-btn">🚪 Sair</a>
+          <span class="perfil-info">
+            {{ session['usuario'] }}
+            <img src="{{ session['foto'] }}" alt="perfil" class="foto-perfil">
+          </span>
+        {% else %}
+          <a href="/login" class="menu-btn">🔐 Entrar</a>
+        {% endif %}
       </div>
     </div>
   </header>

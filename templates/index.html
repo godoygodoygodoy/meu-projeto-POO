@@ -15,24 +15,22 @@
       <div class="menu-buttons">
         <a href="/sobre" class="menu-btn">☰ Home</a>
         <a href="/cardapio" class="menu-btn">🍔 Cardápio</a>
-        <a href="/" class="menu-btn">📅 Pedidos</a>
+        <a href="/carrinho" class="menu-btn">🛒 Carrinho</a>
+        <a href="/sobre" class="menu-btn">📄 Sobre</a>
+        <a href="/index" class="menu-btn">📅 Pedidos</a>
+        {% if 'usuario' in session %}
+          <a href="/logout" class="menu-btn">🚪 Sair</a>
+          <span class="perfil-info">
+            {{ session['usuario'] }}
+            <img src="{{ session['foto'] }}" alt="perfil" class="foto-perfil">
+          </span>
+        {% else %}
+          <a href="/login" class="menu-btn">🔐 Entrar</a>
+        {% endif %}
       </div>
     </div>
   </header>
 
-  <main>
-    <div class="container">
-      <h2>Cadastrar Lanche</h2>
-      <form id="form-lanche">
-        <input type="text" id="nome" placeholder="Nome do Lanche" required>
-        <input type="number" id="preco" placeholder="Preço" required>
-        <button type="submit">Cadastrar</button>
-      </form>
-
-      <h2>Lanches Cadastrados</h2>
-      <ul id="lista-lanches"></ul>
-    </div>
-  </main>
 
   <script src="/static/script.js"></script>
 </body>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
+from flask import Flask, render_template, request, redirect, session, flash, jsonify
 from flask_bcrypt import Bcrypt
 import mysql.connector
 import os
@@ -16,7 +16,7 @@ conn = mysql.connector.connect(
 )
 cursor = conn.cursor()
 
-# ========== ROTAS DE AUTENTICAÇÃO ========== 
+# ========== ROTAS PÚBLICAS ==========
 @app.route('/')
 def landing():
     return render_template('landing.html')
@@ -29,6 +29,21 @@ def login():
 def cadastro():
     return render_template('cadastro.html')
 
+@app.route('/sobre')
+def sobre():
+    return render_template('sobre.html')
+
+@app.route('/cardapio')
+def cardapio():
+    cardapio = [
+        {"nome": "Nightwing Burguer", "descricao": "Picanha com cheddar, cebola roxa e molho secreto", "preco": 28.90},
+        {"nome": "Robin Combo", "descricao": "Smash burger com batata frita e refrigerante", "preco": 22.50},
+        {"nome": "Batgirl Veggie", "descricao": "Hambúrguer de grão-de-bico com salada", "preco": 25.00},
+        {"nome": "Capuz Vermelho", "descricao": "Duplo bacon com pimenta e atitude", "preco": 30.00}
+    ]
+    return render_template('cardapio.html', cardapio=cardapio)
+
+# ========== AUTENTICAÇÃO ==========
 @app.route('/logar', methods=['POST'])
 def logar():
     username = request.form['username']
@@ -77,11 +92,36 @@ def logout():
 @app.route('/home')
 def home():
     if 'usuario' in session:
-        return render_template('index.html', usuario=session['usuario'])
+        return render_template('index.html', usuario=session['usuario'], foto=session.get('foto'))
     else:
         return redirect('/login')
 
-# ========== ROTAS DE PEDIDOS COM MYSQL ==========
+# ========== CARRINHO ==========
+@app.route('/adicionar_carrinho', methods=['POST'])
+def adicionar_carrinho():
+    nome = request.form['nome']
+    preco = float(request.form['preco'])
+
+    if 'carrinho' not in session:
+        session['carrinho'] = []
+
+    session['carrinho'].append({'nome': nome, 'preco': preco})
+    flash(f"{nome} adicionado ao carrinho!")
+    return redirect('/cardapio')
+
+@app.route('/carrinho')
+def carrinho():
+    carrinho = session.get('carrinho', [])
+    total = sum(item['preco'] for item in carrinho)
+    return render_template('carrinho.html', carrinho=carrinho, total=total)
+
+@app.route('/esvaziar_carrinho', methods=['POST'])
+def esvaziar_carrinho():
+    session['carrinho'] = []
+    flash("Carrinho esvaziado!")
+    return redirect('/carrinho')
+
+# ========== API DE LANCHES ==========
 @app.route('/adicionar', methods=['POST'])
 def adicionar():
     if 'usuario' not in session:
@@ -101,33 +141,14 @@ def listar():
     lanches = cursor.fetchall()
     return jsonify([{'nome': nome, 'preco': preco} for nome, preco in lanches])
 
-# ========== PÁGINAS EXTRAS (CARDÁPIO, SOBRE) ==========
-@app.route('/cardapio')
-def cardapio():
-    cardapio = [
-        {"nome": "Nightwing Burguer", "descricao": "Picanha com cheddar, cebola roxa e molho secreto", "preco": 28.90},
-        {"nome": "Robin Combo", "descricao": "Smash burger com batata frita e refrigerante", "preco": 22.50},
-        {"nome": "Batgirl Veggie", "descricao": "Hambúrguer de grão-de-bico com salada", "preco": 25.00},
-        {"nome": "Capuz Vermelho", "descricao": "Duplo bacon com pimenta e atitude", "preco": 30.00}
-    ]
-    return render_template('cardapio.html', cardapio=cardapio)
+# ========== INÍCIO DOS PEDIDOS ==========
+@app.route('/index')
+def index():
+    if 'usuario' in session:
+        return render_template('index.html', usuario=session['usuario'], foto=session.get('foto'))
+    else:
+        return redirect('/login')
 
-@app.route('/adicionar_carrinho', methods=['POST'])
-def adicionar_carrinho():
-    nome = request.form['nome']
-    preco = float(request.form['preco'])
-
-    if 'carrinho' not in session:
-        session['carrinho'] = []
-
-    session['carrinho'].append({'nome': nome, 'preco': preco})
-    flash(f"{nome} adicionado ao carrinho!")
-    return redirect('/cardapio')
-
-@app.route('/sobre')
-def sobre():
-    return render_template('sobre.html')
-
+# ========== EXECUÇÃO ==========
 if __name__ == '__main__':
     app.run(debug=True)
-
